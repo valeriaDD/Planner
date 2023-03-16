@@ -1,0 +1,260 @@
+@import "variables";
+
+body {
+  font-size: 16px;
+  font-family: 'Golos Text', sans-serif;
+  background-color: $--color-white;
+  font-weight: lighter;
+}
+
+.main {
+  display: flex;
+  height: 100vh;
+
+  .left-menu {
+    background-color: $--color-gray;
+    color: $--color-white;
+    width: 240px;
+    padding: 1rem;
+    margin: 0;
+
+    .logo {
+      color: $--color-red;
+      width: 100%;
+      display: flex;
+      align-items: baseline;
+      padding-bottom: 1.5rem;
+
+      &__text {
+        font-size: 1.5rem;
+        padding-bottom: 0.5rem;
+      }
+
+      &__icon {
+        font-size: 2rem;
+      }
+    }
+
+    .workspaces {
+      &__header {
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+      }
+
+      &__content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .workspace {
+          display: flex;
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+          border-radius: 10px;
+          word-break: break-all;
+          transition: all 0.2s linear;
+          cursor: pointer;
+
+          i {
+            opacity: 0.3;
+            cursor: pointer;
+          }
+
+          &:hover, &--active {
+            background-color: $--color-red;
+
+            i {
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      &__add-item {
+        width: 100%;
+        display: inline-flex;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.5;
+        cursor: pointer;
+        transition: opacity 0.2s linear;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .content {
+    padding: 2rem 8rem;
+    flex: 1;
+    background-color: $--color-black;
+    color: $--color-white;
+
+    .header {
+      margin-bottom: 2rem;
+
+      .title {
+        width: 100%;
+        font-size: 2rem;
+        font-weight: 600;
+      }
+
+      .subtitle {
+        color: $--color-red;
+        margin-top: 0.5rem;
+        font-size: 1.3rem;
+        opacity: 0.75;
+      }
+    }
+
+    .body {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 2rem;
+
+      .add-task {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        gap: 1rem;
+        background-color: $--color-gray;
+        border-radius: 10px;
+        padding: 1rem;
+
+        &__title {
+          font-family: "Golos Text", sans-serif;
+          color: $--color-white;
+          flex: 1;
+          width: 100%;
+          background-color: transparent;
+          border: none;
+          outline: none;
+        }
+
+        &__date {
+          border: none;
+          padding: 0.5rem;
+          color: $--color-white;
+          outline: none;
+          border-radius: 5px;
+          transition: background-color 0.1s linear;
+          background-color: $--color-black;
+
+
+          &::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: invert(1);
+          }
+        }
+
+        &__submit {
+          font-weight: 600;
+          padding: 0.5rem;
+          color: $--color-white;
+          background-color: $--color-red;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.1s linear;
+          height: fit-content;
+
+          &:hover {
+            transform: scale(0.95);
+          }
+        }
+      }
+
+      .tasks-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .task {
+          transition: all .25s linear;
+          padding: 1rem;
+          background-color: $--color-gray;
+          border-radius: 10px;
+          display: flex;
+          flex-wrap: nowrap;
+          gap: 1rem;
+          align-items: center;
+
+          &__checkbox {
+            .check {
+              display: none;
+
+              &:checked + label svg g path {
+                stroke-dashoffset:0;
+              }
+            }
+
+            svg {
+              cursor: pointer;
+
+              .path1{
+                stroke-dasharray:400;
+                stroke-dashoffset:400;
+                transition:.25s all;
+              }
+            }
+          }
+
+          &__title {
+            font-family: "Golos Text", sans-serif;
+            flex: 1;
+            color: $--color-white;
+            background-color: transparent;
+            border: none;
+            outline: none;
+          }
+
+          &__date {
+            border: none;
+            padding: 0.5rem;
+            color: $--color-white;
+            outline: none;
+            border-radius: 5px;
+            transition: background-color 0.1s linear;
+            background-color: $--color-black;
+
+
+            &::-webkit-calendar-picker-indicator {
+              cursor: pointer;
+              filter: invert(1);
+            }
+          }
+
+          &__actions {
+            opacity: 0.3;
+            cursor: pointer;
+            transition: opacity 0.2s linear;
+
+            &:hover {
+              opacity: 1;
+            }
+          }
+        }
+
+        .task--overdue {
+          .task {
+            &__date {
+              transition: all .25s linear;
+              border-left: 4px solid $--color-red;
+            }
+          }
+        }
+
+        .task--done {
+          opacity: 0.4;
+        }
+      }
+    }
+  }
+}

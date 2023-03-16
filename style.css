@@ -1,0 +1,261 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  font-size: 16px;
+  font-family: "Golos Text", sans-serif;
+  background-color: #fefefe;
+  font-weight: lighter;
+}
+
+.main {
+  display: flex;
+  height: 100vh;
+}
+.main .left-menu {
+  background-color: #252525;
+  color: #fefefe;
+  width: 240px;
+  padding: 1rem;
+  margin: 0;
+}
+.main .left-menu .logo {
+  color: #e75e5e;
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  padding-bottom: 1.5rem;
+}
+.main .left-menu .logo__text {
+  font-size: 1.5rem;
+  padding-bottom: 0.5rem;
+}
+.main .left-menu .logo__icon {
+  font-size: 2rem;
+}
+.main .left-menu .workspaces__header {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.main .left-menu .workspaces__content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.main .left-menu .workspaces__content .workspace {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  word-break: break-all;
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+.main .left-menu .workspaces__content .workspace i {
+  opacity: 0.3;
+  cursor: pointer;
+}
+.main .left-menu .workspaces__content .workspace:hover, .main .left-menu .workspaces__content .workspace--active {
+  background-color: #e75e5e;
+}
+.main .left-menu .workspaces__content .workspace:hover i, .main .left-menu .workspaces__content .workspace--active i {
+  opacity: 1;
+}
+.main .left-menu .workspaces__add-item {
+  width: 100%;
+  display: inline-flex;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+.main .left-menu .workspaces__add-item:hover {
+  opacity: 1;
+}
+.main .content {
+  padding: 2rem 8rem;
+  flex: 1;
+  background-color: #131313;
+  color: #fefefe;
+}
+.main .content .header {
+  margin-bottom: 2rem;
+}
+.main .content .header .title {
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.main .content .header .subtitle {
+  color: #e75e5e;
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  opacity: 0.75;
+}
+.main .content .body {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 2rem;
+}
+.main .content .body .add-task {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 1rem;
+  background-color: #252525;
+  border-radius: 10px;
+  padding: 1rem;
+}
+.main .content .body .add-task__title {
+  font-family: "Golos Text", sans-serif;
+  color: #fefefe;
+  flex: 1;
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.main .content .body .add-task__date {
+  border: none;
+  padding: 0.5rem;
+  color: #fefefe;
+  outline: none;
+  border-radius: 5px;
+  transition: background-color 0.1s linear;
+  background-color: #131313;
+}
+.main .content .body .add-task__date::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(1);
+}
+.main .content .body .add-task__submit {
+  font-weight: 600;
+  padding: 0.5rem;
+  color: #fefefe;
+  background-color: #e75e5e;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.1s linear;
+  height: fit-content;
+}
+.main .content .body .add-task__submit:hover {
+  transform: scale(0.95);
+}
+.main .content .body .tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.main .content .body .tasks-container .task {
+  transition: all 0.25s linear;
+  padding: 1rem;
+  background-color: #252525;
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  align-items: center;
+}
+.main .content .body .tasks-container .task__checkbox .check {
+  display: none;
+}
+.main .content .body .tasks-container .task__checkbox .check:checked + label svg g path {
+  stroke-dashoffset: 0;
+}
+.main .content .body .tasks-container .task__checkbox svg {
+  cursor: pointer;
+}
+.main .content .body .tasks-container .task__checkbox svg .path1 {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  transition: 0.25s all;
+}
+.main .content .body .tasks-container .task__title {
+  font-family: "Golos Text", sans-serif;
+  flex: 1;
+  color: #fefefe;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+.main .content .body .tasks-container .task__date {
+  border: none;
+  padding: 0.5rem;
+  color: #fefefe;
+  outline: none;
+  border-radius: 5px;
+  transition: background-color 0.1s linear;
+  background-color: #131313;
+}
+.main .content .body .tasks-container .task__date::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: invert(1);
+}
+.main .content .body .tasks-container .task__actions {
+  opacity: 0.3;
+  cursor: pointer;
+  transition: opacity 0.2s linear;
+}
+.main .content .body .tasks-container .task__actions:hover {
+  opacity: 1;
+}
+.main .content .body .tasks-container .task--overdue .task__date {
+  transition: all 0.25s linear;
+  border-left: 4px solid #e75e5e;
+}
+.main .content .body .tasks-container .task--done {
+  opacity: 0.4;
+}
+
+/*# sourceMappingURL=style.css.map */
