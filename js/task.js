@@ -1,8 +1,8 @@
 export class Task {
-    constructor(workspace, title, date, complete = false) {
-        this.id = new Date().getTime();
-        this.workspace = workspace ?? '';
+    constructor(title, date, workspace, complete = false, id) {
+        this.id = id ?? new Date().getTime();
         this.title = title;
+        this.workspace = workspace ?? '';
         this.date = date;
         this.complete = complete;
         this.overdue = this.date && new Date(this.date).getTime() < new Date().getTime();
