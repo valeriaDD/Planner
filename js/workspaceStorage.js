@@ -43,7 +43,7 @@ export class WorkspacesStorage {
                 )
                 element.addEventListener(
                     'click',
-                    () => this.setActiveWorkspace(workplace, element)
+                    (e) => this.setActiveWorkspace(workplace, element, e)
                 )
                 element.querySelector('.workspace__delete-action').addEventListener(
                     "click",
@@ -68,8 +68,13 @@ export class WorkspacesStorage {
 
         if (this.activeWorkplace.id === id) {
             this.activeWorkplace = {};
-            localStorage.setItem("active_workspace", JSON.stringify(this.activeWorkplace))
+            localStorage.setItem("active_workspace", JSON.stringify({}))
         }
+
+        window.dispatchEvent( new CustomEvent("workspaceDeleted", {
+            bubbles: true,
+            detail: id,
+        }));
 
         this.displayWorkplaces();
     }
@@ -86,9 +91,17 @@ export class WorkspacesStorage {
         }
     }
 
-    setActiveWorkspace(workplace, element) {
+    setActiveWorkspace(workplace, element, event) {
+        if (event.target.classList.contains('workspace__delete-action')) {
+            return;
+        }
+
         this.activeWorkplace = workplace;
         localStorage.setItem("active_workspace", JSON.stringify(workplace))
+
+        window.dispatchEvent( new CustomEvent("activeWorkspaceUpdated", {
+            bubbles: true,
+        }));
 
         let activeElements = document.getElementsByClassName("workspace--active");
         if (activeElements.length > 0) {

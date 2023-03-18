@@ -22,7 +22,6 @@ export class TasksStorage {
             localStorage.setItem("tasks", JSON.stringify(this.tasks));
         }
 
-        this.enableTaskForm();
         this.displayTasks(this.tasks.filter(task => task.workspace === this.activeWorkspace.id));
     }
 
@@ -77,6 +76,11 @@ export class TasksStorage {
         })
 
         this.countTasks()
+    }
+
+    removeWorkspaceTasks(workspaceId) {
+        this.tasks = this.tasks.filter(task => task.workspace !== workspaceId);
+        localStorage.setItem("tasks", JSON.stringify(this.tasks));
     }
 
     handleStatusChange(id, element) {

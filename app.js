@@ -12,6 +12,15 @@ const tasksStorage = new TasksStorage();
 
 window.addEventListener('load', () => {
     workspaceStorage.loadWorkplaces().then(() => tasksStorage.loadTasks());
+    tasksStorage.enableTaskForm();
+})
+
+window.addEventListener('activeWorkspaceUpdated', () => {
+    tasksStorage.loadTasks();
+})
+
+window.addEventListener('workspaceDeleted', e => {
+    tasksStorage.removeWorkspaceTasks(e.detail);
 })
 
 addWorkplace.addEventListener(
