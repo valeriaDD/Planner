@@ -58,6 +58,12 @@ export class TasksStorage {
         ).forEach(task => {
             const element = document.createElement('div')
             element.innerHTML = new Task(this.activeWorkspace.id, task.title, task.date, task.complete).getHtmlTemplate();
+            element.querySelector(".task__actions--delete")
+                .addEventListener(
+                    "click",
+                    () => {console.log(task.id)}
+                )
+
             this.toDoList.appendChild(element);
         })
     }

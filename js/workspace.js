@@ -3,10 +3,16 @@ export class Workplace {
     title = undefined
 
     constructor(id = undefined, title = undefined) {
-        this.id = id ?? localStorage.getItem('workspaces')
-            ? JSON.parse(localStorage.getItem('workspaces')).length
-            : 0
-        this.title = title ?? "Untitled" + this.id;
+        this.id = id ?? new Date().getTime();
+        this.title = title ?? this.computeTitle();
+    }
+
+    computeTitle() {
+        return "Untitled " + (
+            JSON.parse(localStorage.getItem('workspaces'))
+                ? JSON.parse(localStorage.getItem('workspaces'))?.length
+                : 0
+        );
     }
 
     getHtmlTemplate() {

@@ -91,7 +91,7 @@ body {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem;
+  padding: 0.7rem;
   border-radius: 10px;
   word-break: break-all;
   transition: all 0.2s linear;
@@ -104,6 +104,7 @@ body {
   outline: none;
   padding: 0.5rem;
   font-family: "Golos Text", sans-serif;
+  border-radius: 5px;
 }
 .main .left-menu .workspaces__list .workspace__input:focus {
   background-color: #d16363;
@@ -142,7 +143,7 @@ body {
   margin-bottom: 2rem;
 }
 .main .content .header .title {
-  width: 100%;
+  word-break: break-all;
   font-size: 2rem;
   font-weight: 600;
 }
