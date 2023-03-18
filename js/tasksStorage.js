@@ -1,20 +1,17 @@
 import {Task} from "./task.js";
 
 export class TasksStorage {
-    activeWorkspace = {}
-    tasks = []
-    totalTasksCounter = 0;
-    toDoTasksCounter = 0;
-    completeTasksCounter = 0;
+    activeWorkspace = {};
+    tasks = [];
 
     toDoForm = document.querySelector("#task-form");
     toDoFormTitleInput = this.toDoForm.querySelector("#task-title-input");
     toDoFormDateInput = this.toDoForm.querySelector("#task-date-input");
     toDoList = document.querySelector("#tasks-list");
 
-    total = document.querySelector("#total-tasks");
-    toDo = document.querySelector("#todo-tasks");
-    complete = document.querySelector("#done-tasks");
+    totalCounter = document.querySelector("#total-tasks");
+    toDoCounter = document.querySelector("#todo-tasks");
+    completeCounter = document.querySelector("#done-tasks");
 
     loadTasks() {
         this.activeWorkspace = JSON.parse(localStorage.getItem("active_workspace"));
@@ -61,10 +58,35 @@ export class TasksStorage {
             element.querySelector(".task__actions--delete")
                 .addEventListener(
                     "click",
-                    () => {console.log(task.id)}
+                    () => this.removeTask(task.id)
                 )
 
             this.toDoList.appendChild(element);
         })
+
+        this.countTasks()
+    }
+
+    removeTask(id) {
+        this.tasks = this.tasks.filter(task => task.id !== id);
+        localStorage.setItem("tasks", JSON.stringify(this.tasks));
+
+        this.displayTasks(this.tasks);
+    }
+
+    countTasks() {
+        const taskCounter = this.tasks
+            .filter(task => task.workspace === this.activeWorkspace.id)
+            .reduce((counter, task) => {
+                task.complete ? counter.complete += 1 : counter.toDo += 1;
+                counter.total += 1;
+
+                return counter;
+            }, {total: 0, toDo: 0, complete: 0});
+
+        this.totalCounter.innerHTML = taskCounter.total;
+        this.toDoCounter.innerHTML = taskCounter.toDo;
+        this.completeCounter.innerHTML = taskCounter.complete;
+
     }
 }
