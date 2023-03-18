@@ -5,8 +5,9 @@ export class WorkspacesStorage {
     workplaces = [];
 
     workspacesList = document.querySelector("#workspaces-list");
+    activeWorkspaceTitle = document.querySelector("#active-workspace-title");
 
-    loadWorkplaces() {
+    async loadWorkplaces() {
         this.workplaces = JSON.parse(localStorage.getItem("workspaces"));
         this.activeWorkplace = JSON.parse(localStorage.getItem("active_workspace"))
 
@@ -19,6 +20,8 @@ export class WorkspacesStorage {
             this.activeWorkplace = this.workplaces[0];
             localStorage.setItem("active_workspace", JSON.stringify(this.activeWorkplace))
         }
+
+        this.activeWorkspaceTitle.innerHTML = this.activeWorkplace?.title ?? '';
 
         this.displayWorkplaces()
     }
@@ -79,6 +82,7 @@ export class WorkspacesStorage {
         if (this.activeWorkplace.id === workplace.id) {
             this.activeWorkplace.title = title;
             localStorage.setItem("active_workspace", JSON.stringify(this.activeWorkplace))
+            this.updateActiveWorkplaceHtml()
         }
     }
 
@@ -92,5 +96,10 @@ export class WorkspacesStorage {
         }
 
         element.querySelector(".workspace").classList.add('workspace--active');
+        this.updateActiveWorkplaceHtml()
+    }
+
+    updateActiveWorkplaceHtml() {
+        this.activeWorkspaceTitle.innerHTML = this.activeWorkplace?.title ?? "";
     }
 }

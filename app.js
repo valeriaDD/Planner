@@ -2,21 +2,16 @@
 
 
 import {WorkspacesStorage } from "./js/workspaceStorage.js";
+import {TasksStorage} from "./js/tasksStorage.js";
 
 
 const addWorkplace = document.querySelector("#add-workspace");
 
-const toDoForm = document.querySelector("#task-form");
-const toDoList = document.querySelector("#tasks-list");
-
-const totalTasksCounter = document.querySelector("#total-tasks");
-const toDoTasksCounter = document.querySelector("#todo-tasks");
-const completeTasksCounter = document.querySelector("#done-tasks");
-
 const workspaceStorage = new WorkspacesStorage();
+const tasksStorage = new TasksStorage();
 
 window.addEventListener('load', () => {
-    workspaceStorage.loadWorkplaces();
+    workspaceStorage.loadWorkplaces().then(() => tasksStorage.loadTasks());
 })
 
 addWorkplace.addEventListener(
