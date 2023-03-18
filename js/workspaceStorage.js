@@ -37,7 +37,7 @@ export class WorkspacesStorage {
                     element.querySelector(".workspace").classList.add('workspace--active');
                 }
 
-                element.querySelector(".workplace__input").addEventListener(
+                element.querySelector(".workspace__input").addEventListener(
                     'input',
                     e => this.updateWorkspace(workplace, e.target.value)
                 )

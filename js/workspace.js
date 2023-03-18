@@ -12,7 +12,7 @@ export class Workplace {
     getHtmlTemplate() {
         return `
             <div class="workspace">
-               <input class="workplace__input" value="${this.title}">
+               <input class="workspace__input" value="${this.title}">
                 <i class="workspace__delete-action bi bi-x"></i>
             </div> 
         `

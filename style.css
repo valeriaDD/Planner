@@ -91,11 +91,22 @@ body {
   flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 0.8rem;
   border-radius: 10px;
   word-break: break-all;
   transition: all 0.2s linear;
   cursor: pointer;
+}
+.main .left-menu .workspaces__list .workspace__input {
+  background-color: transparent;
+  color: #fefefe;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  font-family: "Golos Text", sans-serif;
+}
+.main .left-menu .workspaces__list .workspace__input:focus {
+  background-color: #d16363;
 }
 .main .left-menu .workspaces__list .workspace i {
   opacity: 0.3;
@@ -228,6 +239,11 @@ body {
   background-color: transparent;
   border: none;
   outline: none;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.main .content .body .tasks-list .task__title:focus {
+  background-color: #3b3b3b;
 }
 .main .content .body .tasks-list .task__date {
   border: none;
