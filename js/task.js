@@ -5,7 +5,7 @@ export class Task {
         this.workspace = workspace ?? '';
         this.date = date;
         this.complete = complete;
-        this.overdue = this.date && new Date(this.date).getTime() < new Date().getTime();
+        this.overdue = !this.complete && this.date && new Date(this.date).getTime() < new Date().getTime();
     }
 
     getHtmlTemplate() {

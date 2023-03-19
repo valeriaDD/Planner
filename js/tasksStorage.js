@@ -66,7 +66,7 @@ export class TasksStorage {
             )
             element.querySelector(".check").addEventListener(
                 "click",
-                e => this.handleStatusChange(task.id, e.target)
+                e => this.handleStatusChange(task, e.target)
             )
             element.querySelector(".task__title").addEventListener(
                 "input",
@@ -88,16 +88,21 @@ export class TasksStorage {
         localStorage.setItem("tasks", JSON.stringify(this.tasks));
     }
 
-    handleStatusChange(id, element) {
-        const task = this.tasks.find(task => task.id === id);
-        task.complete = !task.complete;
+    handleStatusChange(task, element) {
+        const foundTask = this.tasks.find(element => element.id === task.id);
+        foundTask.complete = !foundTask.complete;
 
         if (element.hasAttribute('checked')) {
             element.removeAttribute('checked');
             element.parentElement.parentElement.classList.remove("task--done");
+
+            if (task.date && new Date(task.date).getTime() < new Date().getTime()) {
+                element.parentElement.parentElement.classList.add("task--overdue");
+            }
         } else {
             element.setAttribute('checked', true);
             element.parentElement.parentElement.classList.add("task--done");
+            element.parentElement.parentElement.classList.remove("task--overdue");
         }
 
         this.countTasks()
