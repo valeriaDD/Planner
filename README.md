@@ -1,5 +1,7 @@
 # Lab 3 - Learn JavaScript basics
 
+#### Active on:   https://valeriadd.github.io/Planner/
+
 ## Story
 
 Imagine, you're a frontend developer from Melbourne, Australia. You and your company Sleep2nigth Pty Ltd are working on a brand new product - smart To-do lists!
