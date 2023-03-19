@@ -2,8 +2,8 @@ export class Workplace {
     id = undefined;
     title = undefined
 
-    constructor(id = undefined, title = undefined) {
-        this.id = id ?? new Date().getTime();
+    constructor(id =  new Date().getTime(), title = undefined) {
+        this.id = id;
         this.title = title ?? this.computeTitle();
     }
 

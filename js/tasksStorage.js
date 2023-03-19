@@ -117,8 +117,11 @@ export class TasksStorage {
     updateDate(id, element) {
         const task = this.tasks.find(task => task.id === id);
         task.date = element.value;
+        task.overdue = !task.complete
+            && element.value
+            && new Date(element.value).getTime() < new Date().getTime()
 
-        !task.complete && element.value && new Date(element.value).getTime() < new Date().getTime()
+        task.overdue
             ? element.parentElement.classList.add('task--overdue')
             : element.parentElement.classList.remove('task--overdue');
 
@@ -145,6 +148,5 @@ export class TasksStorage {
         this.totalCounter.innerHTML = taskCounter.total;
         this.toDoCounter.innerHTML = taskCounter.toDo;
         this.completeCounter.innerHTML = taskCounter.complete;
-
     }
 }
