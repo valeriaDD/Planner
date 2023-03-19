@@ -67,20 +67,25 @@ export class WorkspacesStorage {
     }
 
     removeWorkspace(id) {
-        this.workplaces = this.workplaces.filter(workplace => workplace.id !== id);
-        localStorage.setItem("workspaces", JSON.stringify(this.workplaces));
+        let confirmResult =
+            confirm("Are you sure you want to delete this workspace? This will also delete all its tasks.");
 
-        if (this.activeWorkplace.id === id) {
-            this.activeWorkplace = {};
-            localStorage.setItem("active_workspace", JSON.stringify({}))
+        if(confirmResult) {
+            this.workplaces = this.workplaces.filter(workplace => workplace.id !== id);
+            localStorage.setItem("workspaces", JSON.stringify(this.workplaces));
+
+            if (this.activeWorkplace.id === id) {
+                this.activeWorkplace = {};
+                localStorage.setItem("active_workspace", JSON.stringify({}))
+            }
+
+            window.dispatchEvent( new CustomEvent("workspaceDeleted", {
+                bubbles: true,
+                detail: id,
+            }));
+
+            this.displayWorkplaces();
         }
-
-        window.dispatchEvent( new CustomEvent("workspaceDeleted", {
-            bubbles: true,
-            detail: id,
-        }));
-
-        this.displayWorkplaces();
     }
 
     updateWorkspace(workplace, title) {
