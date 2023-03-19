@@ -37,6 +37,12 @@ export class TasksStorage {
                 return;
             }
 
+            if (JSON.stringify( this.activeWorkspace ) === '{}') {
+                alert("Please chose a workspace!");
+                return;
+            }
+
+
             const task = new Task(title, date, this.activeWorkspace.id);
             this.tasks.push(task)
             localStorage.setItem("tasks", JSON.stringify(this.tasks))

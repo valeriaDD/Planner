@@ -21,6 +21,11 @@ window.addEventListener('activeWorkspaceUpdated', () => {
 
 window.addEventListener('workspaceDeleted', e => {
     tasksStorage.removeWorkspaceTasks(e.detail);
+
+    if (!workspaceStorage.hasActiveWorkspace()) {
+        tasksStorage.displayTasks([])
+        workspaceStorage.updateActiveWorkplaceHtml("Pick a workspace!")
+    }
 })
 
 addWorkplace.addEventListener(

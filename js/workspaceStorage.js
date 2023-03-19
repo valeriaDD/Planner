@@ -53,6 +53,10 @@ export class WorkspacesStorage {
                 this.workspacesList.appendChild(element);
             }
         )
+
+        if (!this.hasActiveWorkspace()) {
+            this.updateActiveWorkplaceHtml("Pick a workspace!")
+        }
     }
 
     addWorkspace() {
@@ -112,7 +116,12 @@ export class WorkspacesStorage {
         this.updateActiveWorkplaceHtml()
     }
 
-    updateActiveWorkplaceHtml() {
-        this.activeWorkspaceTitle.innerHTML = this.activeWorkplace?.title ?? "";
+    updateActiveWorkplaceHtml(title = undefined) {
+        this.activeWorkspaceTitle.innerHTML = title
+            ?? (this.activeWorkplace?.title ?? "");
+    }
+
+    hasActiveWorkspace() {
+        return JSON.stringify(this.activeWorkplace) !== '{}';
     }
 }
