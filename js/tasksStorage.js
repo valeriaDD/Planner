@@ -66,7 +66,7 @@ export class TasksStorage {
             )
             element.querySelector(".check").addEventListener(
                 "click",
-                e => this.handleStatusChange(task, e.target)
+                e => this.handleStatusChange(task.id, e.target)
             )
             element.querySelector(".task__title").addEventListener(
                 "input",
@@ -88,9 +88,9 @@ export class TasksStorage {
         localStorage.setItem("tasks", JSON.stringify(this.tasks));
     }
 
-    handleStatusChange(task, element) {
-        const foundTask = this.tasks.find(element => element.id === task.id);
-        foundTask.complete = !foundTask.complete;
+    handleStatusChange(id, element) {
+        const task = this.tasks.find(element => element.id === id);
+        task.complete = !task.complete;
 
         if (element.hasAttribute('checked')) {
             element.removeAttribute('checked');
@@ -118,7 +118,7 @@ export class TasksStorage {
         const task = this.tasks.find(task => task.id === id);
         task.date = element.value;
 
-        element.value && new Date(element.value).getTime() < new Date().getTime()
+        !task.complete && element.value && new Date(element.value).getTime() < new Date().getTime()
             ? element.parentElement.classList.add('task--overdue')
             : element.parentElement.classList.remove('task--overdue');
 
